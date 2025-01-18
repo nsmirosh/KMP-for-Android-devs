@@ -74,9 +74,7 @@ fun ArticleItem(
             Column {
                 Text(
                     modifier = Modifier.padding(top = 8.dp),
-
                     text = article.publishedAt,
-//                    text = formatDateTime(article.publishedAt),
                     style = TextStyle(
                         fontSize = 12.sp,
                         color = Color.Black
