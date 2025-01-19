@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.utils.formatCurrentTimestamp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -74,7 +75,8 @@ fun ArticleItem(
             Column {
                 Text(
                     modifier = Modifier.padding(top = 8.dp),
-                    text = article.publishedAt,
+//                    text = article.publishedAt,
+                    text = formatCurrentTimestamp(article.publishedAt),
                     style = TextStyle(
                         fontSize = 12.sp,
                         color = Color.Black
@@ -137,7 +139,7 @@ val fakeArticles = listOf(
     ),
     Article(
         author = "Frank Wilson",
-        publishedAt = "2025-01-10 11:45:00 ",
+        publishedAt = "2025-01-10 11:45:00",
         title = "Mastering Coroutine Flows for Reactive Android Apps",
         url = "https://example.com/coroutine-flows"
     ),
