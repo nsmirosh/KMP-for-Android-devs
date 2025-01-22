@@ -1,6 +1,7 @@
 package com.learnkmp.newsapp
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.utils.getPlatformAndUniqueId
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -51,7 +53,11 @@ fun ArticleItem(
     article: Article,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.clickable {
+        val identifier = getPlatformAndUniqueId()
+        println("identifier = $identifier")
+    }
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
