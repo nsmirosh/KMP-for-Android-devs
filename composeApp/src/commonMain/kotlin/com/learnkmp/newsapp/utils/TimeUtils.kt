@@ -1,3 +1,4 @@
 package com.learnkmp.newsapp.utils
 
-expect fun formatCurrentTimeStamp(timeStamp: String): String
+//TODO implement formatCurrentTimeStamp() function
+// with implementation for Android and iOS

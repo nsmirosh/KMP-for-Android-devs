@@ -14,7 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.learnkmp.newsapp.models.Article
-import com.learnkmp.newsapp.utils.formatCurrentTimeStamp
 import com.learnkmp.newsapp.utils.getPlatformAndUniqueId
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -81,7 +80,9 @@ fun ArticleItem(
             Column {
                 Text(
                     modifier = Modifier.padding(top = 8.dp),
-                    text = formatCurrentTimeStamp(article.publishedAt),
+                    //TODO uncomment once you implement the function
+//                    text = formatCurrentTimeStamp(article.publishedAt),
+                    text = article.publishedAt,
                     style = TextStyle(
                         fontSize = 12.sp,
                         color = Color.Black
