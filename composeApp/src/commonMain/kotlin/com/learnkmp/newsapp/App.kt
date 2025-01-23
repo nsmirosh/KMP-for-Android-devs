@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.utils.balls
 import com.learnkmp.newsapp.utils.getPlatformAndUniqueId
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -56,6 +57,7 @@ fun ArticleItem(
     Column(modifier = modifier.clickable {
         val identifier = getPlatformAndUniqueId()
         println("identifier = $identifier")
+        println("ass = ${balls()}")
     }
     ) {
         Row(
@@ -80,7 +82,8 @@ fun ArticleItem(
             Column {
                 Text(
                     modifier = Modifier.padding(top = 8.dp),
-                    text = article.publishedAt,
+                    text = balls(),
+//                    text = article.publishedAt,
                     style = TextStyle(
                         fontSize = 12.sp,
                         color = Color.Black
