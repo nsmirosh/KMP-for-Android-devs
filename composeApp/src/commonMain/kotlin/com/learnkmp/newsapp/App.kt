@@ -1,6 +1,7 @@
 package com.learnkmp.newsapp
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,7 +52,9 @@ fun ArticleItem(
     article: Article,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.clickable {
+
+    }) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
