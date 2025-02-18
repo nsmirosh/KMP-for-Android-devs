@@ -1,6 +1,7 @@
 package com.learnkmp.newsapp
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,7 +52,9 @@ fun ArticleItem(
     article: Article,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.clickable {
+
+    }) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -102,8 +105,6 @@ fun ArticleItem(
     }
 }
 
-
-// provide a list of fake articles on different topics
 val fakeArticles = listOf(
     Article(
         author = "Alice Johnson",
