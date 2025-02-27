@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.utils.getPlatformName
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -53,6 +54,7 @@ fun ArticleItem(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.clickable {
+        println("platform = ${getPlatformName()}")
 
     }) {
         Row(
