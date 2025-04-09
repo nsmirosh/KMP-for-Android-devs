@@ -1,7 +1,7 @@
 package com.learnkmp.newsapp.utils
 
-import java.util.UUID
+import android.os.Build
 
-actual fun getPlatformAndUniqueId(): String {
-    return "Android-${UUID.randomUUID()}"
+actual fun getPlatformName(): String {
+    return "Android-${Build.VERSION.RELEASE}"
 }

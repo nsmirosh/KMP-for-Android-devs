@@ -1,7 +1,7 @@
 package com.learnkmp.newsapp.utils
 
-import platform.Foundation.NSUUID
+import platform.UIKit.UIDevice
 
-actual fun getPlatformAndUniqueId(): String {
-    return "iOS-${NSUUID().UUIDString}"
+actual fun getPlatformName(): String {
+    return "iOS-${UIDevice.currentDevice.systemVersion}"
 }
