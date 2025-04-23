@@ -8,14 +8,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.buildConfig)
-}
-
-val properties = Properties()
-properties.load(project.rootProject.file("local.properties").inputStream())
-
-buildConfig {
-    buildConfigField("API_KEY", properties.getProperty("API_KEY"))
 }
 
 kotlin {
