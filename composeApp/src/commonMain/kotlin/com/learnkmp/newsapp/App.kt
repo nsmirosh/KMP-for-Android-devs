@@ -1,6 +1,5 @@
 package com.learnkmp.newsapp
 
-import KMPNewsApp.composeApp.BuildConfig
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -57,10 +56,9 @@ fun ArticleItem(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.clickable {
-        println("newsData.io API_KEY = ${BuildConfig.API_KEY}")
+        println("server string = ${article.id}-${getPlatformName()}-${generateClickId()}")
     }) {
 
-        println("server string = ${article.id}-${getPlatformName()}-${generateClickId()}")
         Row(
             modifier = Modifier
                 .fillMaxWidth()
