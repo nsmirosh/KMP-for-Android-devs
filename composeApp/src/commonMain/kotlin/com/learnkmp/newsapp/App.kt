@@ -26,6 +26,13 @@ import com.learnkmp.newsapp.models.Article
 import com.learnkmp.newsapp.utils.formatDateTime
 import com.learnkmp.newsapp.utils.generateClickId
 import com.learnkmp.newsapp.utils.getPlatformName
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -41,6 +48,7 @@ fun FeedList(
     articles: List<Article>,
     modifier: Modifier = Modifier,
 ) {
+    buildKtor()
     LazyColumn(modifier = modifier) {
         items(articles, key = { article -> article.url }) { article ->
             ArticleItem(
@@ -189,3 +197,13 @@ val fakeArticles = listOf(
         url = "https://example.com/error-handling-kmp"
     )
 )
+
+private fun buildKtor() {
+    val client = HttpClient(CIO)
+    val coroutineScope = CoroutineScope(Dispatchers.Default)
+    coroutineScope.launch {
+//        val response: HttpResponse = client.get("https://ktor.io/")
+        val response: HttpResponse = client.get("http://example.com/")
+        println("response.status = ${response.status}")
+    }
+}

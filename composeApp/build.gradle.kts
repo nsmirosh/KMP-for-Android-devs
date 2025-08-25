@@ -36,6 +36,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(libs.ktor.cio.engine)
+            implementation(libs.ktor.client.core)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
