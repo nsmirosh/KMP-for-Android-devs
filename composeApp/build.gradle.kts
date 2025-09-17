@@ -43,6 +43,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.viewmodel.compose)
+            // Image loading (Compose Multiplatform)
+            implementation(libs.coil3.compose)
         }
     }
 }
