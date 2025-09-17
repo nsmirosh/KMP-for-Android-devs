@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp
+package com.learnkmp.newsapp.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +14,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +23,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.learnkmp.newsapp.models.Article
 import com.learnkmp.newsapp.utils.formatDateTime
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -29,15 +33,17 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
     MaterialTheme {
-        FeedList(fakeArticles, modifier = Modifier.fillMaxSize().padding(16.dp))
+        FeedList(modifier = Modifier.fillMaxSize().padding(16.dp))
     }
 }
 
 @Composable
 fun FeedList(
-    articles: List<Article>,
+    viewModel: ArticleViewModel = viewModel { ArticleViewModel() },
     modifier: Modifier = Modifier,
 ) {
+    println("FeedList called")
+    val articles by viewModel.articles.collectAsStateWithLifecycle()
     LazyColumn(modifier = modifier) {
         items(articles) { article ->
             ArticleItem(
@@ -103,83 +109,3 @@ fun ArticleItem(
     }
 }
 
-val fakeArticles = listOf(
-    Article(
-        id = 1,
-        author = "Alice Johnson",
-        publishedAt = "2025-01-05 12:15:00",
-        title = "The Rise of Kotlin Multiplatform in Mobile Development",
-        url = "https://example.com/kotlin-multiplatform"
-    ),
-    Article(
-        id = 2,
-        author = "Bob Smith",
-        publishedAt = "2025-01-05 13:15:00",
-        title = "Exploring Clean Architecture in Android",
-        url = "https://example.com/clean-architecture-android"
-    ),
-    Article(
-        id = 3,
-        author = "Charlotte Brown",
-        publishedAt = "2025-01-05 14:15:00",
-        title = "How to Effectively Test Asynchronous Code in Android",
-        url = "https://example.com/testing-async-android"
-    ),
-    Article(
-        id = 4,
-        author = "David Lee",
-        publishedAt = "2025-01-05 15:15:00",
-        title = "Top 5 Jetpack Compose Libraries to Know in 2025",
-        url = "https://example.com/jetpack-compose-libraries"
-    ),
-    Article(
-        id = 5,
-        author = "Emily Davis",
-        publishedAt = "2025-01-05 16:15:00",
-        title = "Understanding Dependency Injection with Koin",
-        url = "https://example.com/dependency-injection-koin"
-    ),
-    Article(
-        id = 6,
-        author = "Frank Wilson",
-        publishedAt = "2025-01-10 11:45:00",
-        title = "Mastering Coroutine Flows for Reactive Android Apps",
-        url = "https://example.com/coroutine-flows"
-    ),
-    Article(
-        id = 7,
-        author = "Grace Thomas",
-        publishedAt = "2025-01-05 12:15:00",
-        title = "Introduction to Voyager for State Management in KMP",
-        url = "https://example.com/voyager-state-management"
-    ),
-    Article(
-        id = 8,
-        author = "Henry Moore",
-        publishedAt = "2025-01-05 10:15:00",
-        title = "Optimizing Performance in KMP Projects",
-        url = "https://example.com/optimizing-kmp-performance"
-    ),
-
-    Article(
-        id = 9,
-        author = "Ivy Martinez",
-        publishedAt = "2025-01-05 12:15:00",
-        title = "Advanced Logging Techniques with Kermit in KMP",
-        url = "https://example.com/kermit-logging-kmp"
-    ),
-    Article(
-        id = 10,
-        author = "Jack Anderson",
-        publishedAt = "2025-01-05 12:15:00",
-        title = "Building Accessible UIs with Compose Multiplatform",
-        url = "https://example.com/accessible-ui-compose"
-    ),
-    Article(
-        id = 11,
-        author = "Karen Phillips",
-        publishedAt = "2025-01-05 12:15:00",
-        title = "Best Practices for Error Handling in KMP Applications",
-        url = "https://example.com/error-handling-kmp"
-    )
-)
