@@ -118,9 +118,9 @@ fun ArticleItem(
 
                 Spacer(modifier = Modifier.size(6.dp))
 
-                val source = article.author.ifBlank { extractHost(article.url) }
+                val source = article.source.ifBlank { extractHost(article.link) }
                 Text(
-                    text = "$source • ${formatDateTime(article.publishedAt)}",
+                    text = "$source • ${formatDateTime(article.pubDate)}",
                     style = TextStyle(fontSize = 12.sp, color = Color(0xFF6B7280))
                 )
             }

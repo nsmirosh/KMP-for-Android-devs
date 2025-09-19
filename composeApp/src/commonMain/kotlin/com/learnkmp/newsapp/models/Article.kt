@@ -1,5 +1,7 @@
 package com.learnkmp.newsapp.models
 
+import kotlinx.serialization.SerialName
+
 /**
  * Represents a news article for the feed UI.
  * imageUrl: optional image URL coming with the article.
@@ -7,10 +9,10 @@ package com.learnkmp.newsapp.models
  */
 data class Article(
     val id: Int,
-    val author: String,
-    val publishedAt: String,
+    @SerialName("source_name") val source: String,
+    val pubDate: String,
     val title: String,
-    val url: String,
-    val imageUrl: String? = null,
+    val link: String,
+    @SerialName("image_url") val imageUrl: String? = null,
     val keywords: List<String> = emptyList(),
 )
