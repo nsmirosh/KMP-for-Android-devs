@@ -85,7 +85,8 @@ fun ArticleItem(
                 .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val tint = pastelColors[article.id % pastelColors.size]
+            val randomIndex = (0 until pastelColors.size).random()
+            val tint = pastelColors[randomIndex]
             AsyncImage(
                 model = article.imageUrl,
                 contentDescription = null,
@@ -107,7 +108,8 @@ fun ArticleItem(
                     overflow = TextOverflow.Ellipsis
                 )
 
-                if (article.keywords.isNotEmpty()) {
+
+                if (article.keywords!!.isNotEmpty()) {
                     Spacer(modifier = Modifier.size(6.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                         article.keywords.take(3).forEach { kw ->

@@ -1,18 +1,17 @@
 package com.learnkmp.newsapp.models
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlin.jvm.Transient
 
-/**
- * Represents a news article for the feed UI.
- * imageUrl: optional image URL coming with the article.
- * keywords: optional list of keywords/tags for the article.
- */
+@Serializable
 data class Article(
-    val id: Int,
+    @SerialName("article_id") val id: String = "",
     @SerialName("source_name") val source: String,
     val pubDate: String,
     val title: String,
     val link: String,
     @SerialName("image_url") val imageUrl: String? = null,
     val keywords: List<String> = emptyList(),
+//    val keywords: List<String> = emptyList(),
 )
