@@ -109,10 +109,10 @@ fun ArticleItem(
                 )
 
 
-                if (article.keywords!!.isNotEmpty()) {
+                if (article.keywords.isNotEmpty()) {
                     Spacer(modifier = Modifier.size(6.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        article.keywords.take(3).forEach { kw ->
+                        article.keywords.take(2).forEach { kw ->
                             KeywordChip(text = kw)
                         }
                     }
