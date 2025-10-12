@@ -55,7 +55,7 @@ kotlin {
             implementation(libs.ktor.client.darwin)
         }
         commonMain.dependencies {
-            implementation("io.ktor:ktor-client-logging:3.3.0")
+            implementation(libs.ktor.client.logging)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
