@@ -10,7 +10,7 @@ interface NewsDataRepo {
 class NewsDataRepoImpl : NewsDataRepo {
 
     override suspend fun getNewsData(): List<Article> {
-        //TODO fetching latest new from newsdata.io
-
+        //TODO fetch articles from newsdata.io via the latest_news endpoint
+        return emptyList()
     }
 }
