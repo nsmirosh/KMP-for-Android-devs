@@ -1,7 +1,6 @@
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.util.Properties
 
 buildscript {
     repositories {
@@ -19,6 +18,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.buildKonfig)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 
@@ -45,6 +45,10 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -57,7 +61,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.viewmodel.compose)
             implementation(libs.coil3.compose)
-
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
         }
     }
 }
@@ -89,8 +96,6 @@ android {
     }
 }
 
-val properties = Properties()
-properties.load(project.rootProject.file("local.properties").inputStream())
 
 buildkonfig {
     packageName = "com.learnkmp.newsapp"
@@ -98,7 +103,7 @@ buildkonfig {
     // exposeObjectWithName = "YourAwesomePublicConfig"
 
     defaultConfigs {
-        buildConfigField(STRING, "API_KEY", "${properties.getProperty("API_KEY")}")
+        buildConfigField(STRING, "API_KEY", "")
     }
 }
 
