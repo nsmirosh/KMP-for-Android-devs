@@ -1,13 +1,13 @@
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.kotlin.gradle.plugin)
         classpath(libs.buildkonfig.gradle.plugin)
     }
 }
@@ -97,13 +97,14 @@ android {
 }
 
 
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
+
 buildkonfig {
     packageName = "com.learnkmp.newsapp"
-    // objectName = "YourAwesomeConfig"
-    // exposeObjectWithName = "YourAwesomePublicConfig"
 
     defaultConfigs {
-        buildConfigField(STRING, "API_KEY", "")
+        buildConfigField(STRING, "API_KEY", properties.getProperty("API_KEY"))
     }
 }
 
