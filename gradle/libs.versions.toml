@@ -1,14 +1,14 @@
 [versions]
-agp = "8.13.0"
+agp = "8.13.1"
 android-compileSdk = "36"
 android-minSdk = "26"
 android-targetSdk = "36"
 androidx-activityCompose = "1.11.0"
-androidx-lifecycle = "2.9.5"
-compose-multiplatform = "1.9.1"
+androidx-lifecycle = "2.9.6"
+compose-multiplatform = "1.9.3"
 kotlin = "2.2.21"
 coil3 = "3.3.0"
-ktor = "3.3.1"
+ktor = "3.3.2"
 buildKonfig = "0.17.1"
 
 [libraries]
