@@ -114,7 +114,6 @@ class ArticleViewModel : ViewModel() {
 
     private fun fetchArticles() {
         viewModelScope.launch {
-            //TODO uncomment once you've implemented fetching the news data
             _articles.value = repo.getNewsData()
         }
     }
