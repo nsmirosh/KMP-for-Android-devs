@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+import com.learnkmp.newsapp.domain.Result
+
 private val fakeArticles = listOf(
     Article(
         source = "Alice Johnson",
@@ -114,7 +116,16 @@ class ArticleViewModel : ViewModel() {
 
     private fun fetchArticles() {
         viewModelScope.launch {
-            _articles.value = repo.getNewsData()
+            when (val result = repo.getNewsData()) {
+                is Result.Success -> {
+                    _articles.value = result.data
+                }
+
+                is Result.Error -> {
+                    println("Error: ${result.throwable.message}")
+
+                }
+            }
         }
     }
 }

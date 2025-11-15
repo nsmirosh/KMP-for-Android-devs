@@ -9,16 +9,21 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 
 
 expect fun createHttpClient(): HttpClient
 
+@OptIn(ExperimentalSerializationApi::class)
 fun buildHttpClient() =
     createHttpClient().config {
         val formatter = Json {
+            ignoreUnknownKeys = true
+            isLenient = true
             prettyPrint = true
+            coerceInputValues = true // for empty keywords
         }
         install(ContentNegotiation) {
             json(formatter)
