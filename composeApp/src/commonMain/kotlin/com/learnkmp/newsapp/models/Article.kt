@@ -11,5 +11,5 @@ data class Article(
     val title: String,
     val link: String,
     @SerialName("image_url") val imageUrl: String? = null,
-    val keywords: List<String> = emptyList(),
+    val keywords: List<String> = emptyList(), //via coerceInputValues
 )
