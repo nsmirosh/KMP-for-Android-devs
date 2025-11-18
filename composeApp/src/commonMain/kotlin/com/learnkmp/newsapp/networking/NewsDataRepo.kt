@@ -13,7 +13,7 @@ class NewsDataRepoImpl : NewsDataRepo {
     val httpClient = buildHttpClient()
 
     override suspend fun getNewsData(): List<Article> {
-        //TODO fetch articles from newsdata.io via the latest_news endpoint
+        //TODO provide the API key via BuildKonfig
 
         httpClient.get("https://newsdata.io/api/1/latest?apikey=")
         return emptyList()
