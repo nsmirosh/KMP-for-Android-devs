@@ -67,7 +67,7 @@ kotlin {
             implementation(libs.viewmodel.compose)
             // Image loading (Compose Multiplatform)
             implementation(libs.coil3.compose)
-//            implementation(libs.coil3.ktor)
+            implementation(libs.coil3.ktor)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)

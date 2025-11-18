@@ -95,7 +95,10 @@ fun ArticleItem(
                     .clip(RoundedCornerShape(10.dp)),
                 contentScale = ContentScale.Crop,
                 placeholder = ColorPainter(tint),
-                error = ColorPainter(tint)
+                error = ColorPainter(Color.Black),
+                onError = {
+                    println(it.result.throwable.printStackTrace())
+                }
             )
 
             Spacer(modifier = Modifier.size(12.dp))
