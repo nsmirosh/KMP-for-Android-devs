@@ -1,5 +1,6 @@
 package com.learnkmp.newsapp.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil3.compose.AsyncImage
 import com.learnkmp.newsapp.models.Article
 import com.learnkmp.newsapp.utils.formatDateTime
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -87,15 +86,13 @@ fun ArticleItem(
         ) {
             val randomIndex = (0 until pastelColors.size).random()
             val tint = pastelColors[randomIndex]
-            AsyncImage(
-                model = article.imageUrl,
-                contentDescription = null,
+
+            Image(
                 modifier = Modifier
                     .size(84.dp)
                     .clip(RoundedCornerShape(10.dp)),
-                contentScale = ContentScale.Crop,
-                placeholder = ColorPainter(tint),
-                error = ColorPainter(tint)
+                painter = ColorPainter(tint),
+                contentDescription = "",
             )
 
             Spacer(modifier = Modifier.size(12.dp))
