@@ -10,6 +10,8 @@ data class Article(
     val pubDate: String,
     val title: String,
     val link: String,
+    val description: String? = null,
     @SerialName("image_url") val imageUrl: String? = null,
+    @SerialName("source_icon") val sourceIconUrl: String? = null,
     val keywords: List<String> = emptyList(), //via coerceInputValues
 )
