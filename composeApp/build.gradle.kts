@@ -66,7 +66,7 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.coil.compose)
             implementation(libs.coil.networking)
-            implementation(libs.androidx.navigation3.ui)
+            implementation(libs.androidx.nav3.ui)
         }
     }
 }

@@ -3,6 +3,7 @@ package com.learnkmp.newsapp.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,30 +20,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.learnkmp.newsapp.models.Article
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
-        val backStack = remember { mutableStateListOf<Any>(Destination.NewsListKey) }
+        val backStack = remember { mutableStateListOf<NavKey>(NewsListKey) }
 
         NavDisplay(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
             backStack = backStack,
             onBack = { backStack.removeLastOrNull() },
             entryProvider = entryProvider {
-                entry<Destination.NewsListKey> {
+                entry<NewsListKey> {
                     FeedList(
                         onArticleClick = { article ->
-                            backStack.add(Destination.NewsDetailsKey(article))
+                            backStack.add(NewsDetailsKey(article))
 
                         }
                     )
                 }
-                entry<Destination.NewsDetailsKey> { key ->
+                entry<NewsDetailsKey> { key ->
                     ArticleDetails(article = key.article) {
                         backStack.removeLastOrNull()
                     }
@@ -53,10 +56,8 @@ fun App() {
 }
 
 
-sealed class Destination {
-    data object NewsListKey : Destination()
-    data class NewsDetailsKey(val article: Article) : Destination()
-}
+data object NewsListKey : NavKey
+data class NewsDetailsKey(val article: Article) : NavKey
 
 
 @Composable
