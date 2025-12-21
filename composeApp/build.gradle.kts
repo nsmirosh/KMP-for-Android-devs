@@ -68,8 +68,10 @@ kotlin {
             implementation(libs.coil.networking)
             implementation(libs.androidx.extended.icons)
 
-            implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.10.0-rc02")
+            implementation(libs.ui.tooling.preview)
             implementation(libs.androidx.nav3.ui)
+            implementation(libs.koin.core)
+            implementation(libs.koin.viewmodel)
         }
     }
 }
