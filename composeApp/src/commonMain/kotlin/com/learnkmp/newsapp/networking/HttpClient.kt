@@ -14,11 +14,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 
 
-expect fun createHttpClient(): HttpClient
+expect fun createPlatformHttpClient(): HttpClient
 
 @OptIn(ExperimentalSerializationApi::class)
 fun buildHttpClient() =
-    createHttpClient().config {
+    createPlatformHttpClient().config {
         val formatter = Json {
             ignoreUnknownKeys = true
             isLenient = true

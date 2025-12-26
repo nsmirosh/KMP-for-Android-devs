@@ -103,12 +103,11 @@ private val fakeArticles = listOf(
     )
 )
 
-class ArticleViewModel : ViewModel() {
+class ArticleViewModel(val repo: NewsDataRepo ) : ViewModel() {
 
     private val _articles = MutableStateFlow(fakeArticles)
     val articles = _articles.asStateFlow()
 
-    val repo: NewsDataRepo = NewsDataRepoImpl()
 
     init {
         fetchArticles()

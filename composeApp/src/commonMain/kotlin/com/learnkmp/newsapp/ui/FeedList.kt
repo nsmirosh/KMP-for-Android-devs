@@ -19,12 +19,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.learnkmp.newsapp.models.Article
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun FeedList(
-    viewModel: ArticleViewModel = viewModel { ArticleViewModel() },
+    viewModel: ArticleViewModel = koinViewModel() ,
     modifier: Modifier = Modifier,
     onArticleClick: (Article) -> Unit = {}
 ) {
