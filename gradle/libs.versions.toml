@@ -13,6 +13,7 @@ coil3 = "3.3.0"
 androidx-nav3 = "1.0.0-alpha06"
 icons = "1.7.3"
 koin = "4.2.0-beta2"
+data-store = "1.2.0"
 
 
 [libraries]
@@ -35,7 +36,8 @@ androidx-extended-icons = { module = "org.jetbrains.compose.material:material-ic
 androidx-nav3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "androidx-nav3" }
 koin-core = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
-
+data-store = { module = "androidx.datastore:datastore", version.ref = "data-store" }
+data-store-prefs  = { module = "androidx.datastore:datastore-preferences", version.ref = "data-store" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
