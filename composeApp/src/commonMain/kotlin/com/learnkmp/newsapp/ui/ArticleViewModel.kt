@@ -1,25 +1,16 @@
 package com.learnkmp.newsapp.ui
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.learnkmp.newsapp.models.Article
-import com.learnkmp.newsapp.networking.NewsDataRepo
-import com.learnkmp.newsapp.networking.NewsDataRepoImpl
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-
 import com.learnkmp.newsapp.domain.Category
 import com.learnkmp.newsapp.domain.Result
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.flow.first
+import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.networking.NewsDataRepo
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 private val fakeArticles = listOf(
     Article(
@@ -113,10 +104,7 @@ private val fakeArticles = listOf(
     )
 )
 
-
-const val categoryPrefsKey = "category"
-
-class ArticleViewModel(val repo: NewsDataRepo, private val dataStore: DataStore<Preferences>) :
+class ArticleViewModel(val repo: NewsDataRepo) :
     ViewModel() {
 
     private val _articles = MutableStateFlow(fakeArticles)
@@ -127,27 +115,11 @@ class ArticleViewModel(val repo: NewsDataRepo, private val dataStore: DataStore<
 
 
     init {
-        viewModelScope.launch{
-            val savedCategory = dataStore.data.map { data ->
-                Category.entries.firstOrNull {
-                    it.value == data[stringPreferencesKey(categoryPrefsKey)]
-                }
-            }.firstOrNull()
-            savedCategory?.let {
-                _selectedCategory.value = it
-            }
-            println("savedCategory = $savedCategory")
-            fetchArticles(savedCategory)
-        }
+        fetchArticles(null)
     }
 
     fun onCategorySelected(category: Category?) {
         _selectedCategory.value = category
-        viewModelScope.launch {
-            dataStore.edit {
-                it[stringPreferencesKey(categoryPrefsKey)] = category?.value.orEmpty()
-            }
-        }
         fetchArticles(category)
     }
 

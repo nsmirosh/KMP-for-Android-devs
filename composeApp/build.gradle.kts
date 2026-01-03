@@ -66,8 +66,6 @@ kotlin {
             implementation(libs.androidx.nav3.ui)
             implementation(libs.koin.core)
             implementation(libs.koin.viewmodel)
-            implementation(libs.data.store)
-            implementation(libs.data.store.prefs)
         }
     }
 }
