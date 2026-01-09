@@ -10,9 +10,10 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.learnkmp.newsapp.di.appModule
+import com.learnkmp.newsapp.di.iOSNetworkModule
+import com.learnkmp.newsapp.di.platformModule
 import com.learnkmp.newsapp.models.Article
 import org.koin.compose.KoinApplication
-import org.koin.core.module.Module
 import org.koin.dsl.KoinConfiguration
 
 
@@ -20,9 +21,13 @@ data object NewsListKey : NavKey
 data class NewsDetailsKey(val article: Article) : NavKey
 
 @Composable
-fun App(platformModule: Module) {
+fun App() {
     KoinApplication(configuration = KoinConfiguration {
-        modules(appModule, platformModule)
+        modules(
+            appModule(),
+            iOSNetworkModule(),
+            platformModule()
+        )
     }) {
         MaterialTheme {
             val backStack = remember { mutableStateListOf<NavKey>(NewsListKey) }

@@ -136,7 +136,6 @@ class ArticleViewModel(val repo: NewsDataRepo, private val dataStore: DataStore<
             savedCategory?.let {
                 _selectedCategory.value = it
             }
-            println("savedCategory = $savedCategory")
             fetchArticles(savedCategory)
         }
     }

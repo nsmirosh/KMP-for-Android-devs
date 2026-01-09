@@ -4,10 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.view.WindowCompat
-import com.learnkmp.newsapp.di.androidModule
 import com.learnkmp.newsapp.ui.App
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            App(androidModule)
+            App()
         }
     }
 }
