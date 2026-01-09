@@ -1,7 +1,6 @@
-import org.gradle.declarative.dsl.schema.FqName.Empty.packageName
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import java.util.Properties
 
 buildscript {
@@ -9,7 +8,6 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.kotlin.gradle.plugin)
         classpath(libs.buildkonfig.gradle.plugin)
     }
 }
@@ -19,8 +17,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.buildKonfig)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 
@@ -44,34 +42,32 @@ kotlin {
     }
     
     sourceSets {
-        
         androidMain.dependencies {
-            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-
             implementation(libs.ktor.client.okhttp)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
         commonMain.dependencies {
-            implementation(libs.ktor.client.logging)
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(libs.material)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.viewmodel.compose)
-            // Image loading (Compose Multiplatform)
-            implementation(libs.coil3.compose)
-            implementation(libs.coil3.ktor)
-
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.networking)
+            implementation(libs.androidx.extended.icons)
+
+            implementation(libs.ui.tooling.preview)
+            implementation(libs.androidx.nav3.ui)
+            implementation(libs.koin.core)
+            implementation(libs.koin.viewmodel)
+            implementation(libs.data.store)
+            implementation(libs.data.store.prefs)
         }
     }
 }
@@ -108,15 +104,8 @@ properties.load(project.rootProject.file("local.properties").inputStream())
 
 buildkonfig {
     packageName = "com.learnkmp.newsapp"
-    // objectName = "YourAwesomeConfig"
-    // exposeObjectWithName = "YourAwesomePublicConfig"
 
     defaultConfigs {
-        buildConfigField(STRING, "API_KEY", "${properties.getProperty("API_KEY")}")
+        buildConfigField(STRING, "API_KEY", properties.getProperty("API_KEY"))
     }
 }
-
-dependencies {
-    debugImplementation(compose.uiTooling)
-}
-
