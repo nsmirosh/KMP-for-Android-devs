@@ -19,7 +19,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
-fun iOSNetworkModule() = module {
+fun commonNetworkModule() = module {
     single<HttpClient> {
         // injecting platform-specific HttpClient here
         val platformHttpClient: HttpClient = get(named("platform"))
