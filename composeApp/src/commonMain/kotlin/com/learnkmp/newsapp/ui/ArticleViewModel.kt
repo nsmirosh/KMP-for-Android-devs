@@ -35,7 +35,7 @@ class ArticleViewModel(val repo: NewsDataRepo, private val dataStore: DataStore<
 
 
     init {
-        viewModelScope.launch{
+        viewModelScope.launch {
             val savedCategory = dataStore.data.map { data ->
                 Category.entries.firstOrNull {
                     it.value == data[stringPreferencesKey(categoryPrefsKey)]
