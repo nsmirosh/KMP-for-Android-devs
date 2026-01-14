@@ -10,10 +10,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.SubcomposeAsyncImage
-import kmpnewsapp.composeapp.generated.resources.Res
-import kmpnewsapp.composeapp.generated.resources.image_load_fail
-import kmpnewsapp.composeapp.generated.resources.image_placeholder
-import org.jetbrains.compose.resources.painterResource
 
 
 @Composable
@@ -22,11 +18,12 @@ fun NewsAsyncImage(url: String?, modifier: Modifier = Modifier) {
     val tint = pastelColors[randomIndex]
 
     if (url == null) {
-        Image(
-            painter = painterResource(Res.drawable.image_placeholder),
-            contentDescription = null,
-            modifier = modifier.padding(16.dp).background(tint),
-        )
+        //TODO uncomment once you import the resources and the images
+//        Image(
+//            painter = painterResource(Res.drawable.image_placeholder),
+//            contentDescription = null,
+//            modifier = modifier.padding(16.dp).background(tint),
+//        )
         return
     }
     SubcomposeAsyncImage(
@@ -39,11 +36,12 @@ fun NewsAsyncImage(url: String?, modifier: Modifier = Modifier) {
             CircularProgressIndicator(modifier = Modifier.padding(24.dp))
         },
         error = {
-            Image(
-                painter = painterResource(Res.drawable.image_load_fail),
-                contentDescription = null,
-                modifier = Modifier.padding(16.dp)
-            )
+            //TODO uncomment once you import the resources and the images
+//        Image(
+//            painter = painterResource(Res.drawable.image_load_fail),
+//            contentDescription = null,
+//            modifier = modifier.padding(16.dp).background(tint),
+//        )
         }
     )
 }
