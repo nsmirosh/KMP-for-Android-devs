@@ -1,0 +1,7 @@
+<resources>
+    <string name="status_done">Done</string>
+    <string name="status_pending">Pending</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_not_completed">Not Completed</string>
+    <string name="Description">Description</string>
+</resources>

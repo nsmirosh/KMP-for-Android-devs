@@ -1,28 +1,53 @@
 package com.learnkmp.newsapp.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
-import coil3.compose.AsyncImage
+import androidx.compose.ui.unit.dp
+import coil3.compose.SubcomposeAsyncImage
+import kmpnewsapp.composeapp.generated.resources.Res
+import kmpnewsapp.composeapp.generated.resources.image_load_fail
+import kmpnewsapp.composeapp.generated.resources.image_placeholder
+import org.jetbrains.compose.resources.painterResource
 
 
 @Composable
 fun NewsAsyncImage(url: String?, modifier: Modifier = Modifier) {
     val randomIndex = (0 until pastelColors.size).random()
     val tint = pastelColors[randomIndex]
-    AsyncImage(
+
+    if (url == null) {
+        Image(
+            painter = painterResource(Res.drawable.image_placeholder),
+            contentDescription = null,
+            modifier = modifier.padding(16.dp).background(tint),
+        )
+        return
+    }
+    SubcomposeAsyncImage(
         model = url,
         contentDescription = null,
         modifier = modifier
             .background(tint),
         contentScale = ContentScale.Crop,
-        placeholder = ColorPainter(tint),
-        error = ColorPainter(Color.Black)
+        loading = {
+            CircularProgressIndicator(modifier = Modifier.padding(24.dp))
+        },
+        error = {
+            Image(
+                painter = painterResource(Res.drawable.image_load_fail),
+                contentDescription = null,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
     )
 }
+
 private val pastelColors = listOf(
     Color(0xFFE3F2FD), // light blue
     Color(0xFFFFF3E0), // light orange
