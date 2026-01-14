@@ -28,6 +28,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.learnkmp.newsapp.domain.Category
 import com.learnkmp.newsapp.models.Article
+import kmpnewsapp.composeapp.generated.resources.Res
+import kmpnewsapp.composeapp.generated.resources.top_news
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -48,7 +51,7 @@ fun FeedList(
     ) {
         item {
             Text(
-                text = "Top News",
+                text = stringResource(Res.string.top_news),
                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 22.sp)
             )
             Spacer(modifier = Modifier.padding(top = 4.dp))

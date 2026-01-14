@@ -35,6 +35,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.learnkmp.newsapp.models.Article
 import com.learnkmp.newsapp.utils.formatDateTime
+import kmpnewsapp.composeapp.generated.resources.Res
+import kmpnewsapp.composeapp.generated.resources.open_url
+import kmpnewsapp.composeapp.generated.resources.read_full_story
+import org.jetbrains.compose.resources.stringResource
 
 
 @Composable
@@ -119,12 +123,13 @@ fun ArticleDetails(
                 ) {
                     Column(modifier = Modifier.fillMaxWidth().padding(12.dp)) {
                         Text(
-                            text = "Read full story:",
+                            text = stringResource(Res.string.read_full_story),
                             style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                         )
                         Spacer(modifier = Modifier.size(6.dp))
                         OutlinedButton(onClick = { uriHandler.openUri(article.link) }) {
-                            Text("Open ${article.link}")
+                            Text(stringResource(Res.string.open_url, article.link))
+//                            Text("Open ${article.link}")
                         }
                     }
                 }

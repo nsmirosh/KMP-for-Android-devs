@@ -2,9 +2,13 @@ package com.learnkmp.newsapp.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -36,7 +40,9 @@ fun NewsAsyncImage(url: String?, modifier: Modifier = Modifier) {
             .background(tint),
         contentScale = ContentScale.Crop,
         loading = {
-            CircularProgressIndicator(modifier = Modifier.padding(24.dp))
+            Box (modifier = modifier.fillMaxSize()){
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center).size(32.dp))
+            }
         },
         error = {
             Image(
