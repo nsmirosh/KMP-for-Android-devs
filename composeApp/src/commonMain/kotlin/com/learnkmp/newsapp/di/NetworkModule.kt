@@ -1,7 +1,5 @@
 package com.learnkmp.newsapp.di
 
-import com.learnkmp.newsapp.networking.NewsDataRepo
-import com.learnkmp.newsapp.networking.NewsDataRepoImpl
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -55,5 +53,4 @@ fun commonNetworkModule() = module {
 
 
     }
-    singleOf(::NewsDataRepoImpl) { bind<NewsDataRepo>() }
 }

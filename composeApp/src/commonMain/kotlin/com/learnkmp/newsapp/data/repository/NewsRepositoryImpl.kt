@@ -1,31 +1,27 @@
-package com.learnkmp.newsapp.networking
+package com.learnkmp.newsapp.data.repository
 
 import com.learnkmp.newsapp.BuildKonfig
-import com.learnkmp.newsapp.database.ArticleDao
-import com.learnkmp.newsapp.database.toDomain
-import com.learnkmp.newsapp.database.toEntity
-import com.learnkmp.newsapp.domain.Category
-import com.learnkmp.newsapp.domain.Result
-import com.learnkmp.newsapp.models.Article
-import com.learnkmp.newsapp.models.ArticlesResponse
+import com.learnkmp.newsapp.data.database.ArticleDao
+import com.learnkmp.newsapp.data.database.toDomain
+import com.learnkmp.newsapp.data.database.toEntity
+import com.learnkmp.newsapp.data.networking.ArticlesResponseDto
+import com.learnkmp.newsapp.domain.model.Article
+import com.learnkmp.newsapp.domain.model.Category
+import com.learnkmp.newsapp.domain.model.Result
+import com.learnkmp.newsapp.domain.repository.NewsRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 
-
-interface NewsDataRepo {
-    suspend fun getNewsData(category: Category?): Result<List<Article>>
-}
-
-class NewsDataRepoImpl(
+class NewsRepositoryImpl(
     private val httpClient: HttpClient,
     private val articleDao: ArticleDao
-) : NewsDataRepo {
+) : NewsRepository {
 
-    override suspend fun getNewsData(category: Category?): Result<List<Article>> =
+    override suspend fun getNews(category: Category?): Result<List<Article>> =
         try {
-            val response: ArticlesResponse =
+            val response: ArticlesResponseDto =
                 httpClient.get("https://newsdata.io/api/1/latest") {
                     parameter("language", "en")
                     parameter("apikey", BuildKonfig.API_KEY)
@@ -42,7 +38,7 @@ class NewsDataRepoImpl(
             }
             articleDao.insertArticles(articles.map { it.toEntity(category?.value) })
 
-            Result.Success(articles)
+            Result.Success(articles.map { it.toDomain() })
         } catch (e: Exception) {
             val cachedArticles = if (category == null) {
                 articleDao.getArticlesWithoutCategory()

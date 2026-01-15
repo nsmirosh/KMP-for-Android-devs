@@ -1,7 +1,7 @@
 package com.learnkmp.newsapp.di
 
-import com.learnkmp.newsapp.data.createIosDataStore
-import com.learnkmp.newsapp.database.getIOSDatabaseBuilder
+import com.learnkmp.newsapp.data.datastore.createIosDataStore
+import com.learnkmp.newsapp.data.database.getIOSDatabaseBuilder
 import org.koin.dsl.module
 
 fun iosModule() = module {

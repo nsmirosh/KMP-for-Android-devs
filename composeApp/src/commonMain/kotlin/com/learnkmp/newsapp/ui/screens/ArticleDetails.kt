@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.ui
+package com.learnkmp.newsapp.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,7 +33,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.domain.model.Article
+import com.learnkmp.newsapp.ui.KeywordChip
+import com.learnkmp.newsapp.ui.NewsAsyncImage
+import com.learnkmp.newsapp.ui.backBtnImageVector
 import com.learnkmp.newsapp.utils.formatDateTime
 import kmpnewsapp.composeapp.generated.resources.Res
 import kmpnewsapp.composeapp.generated.resources.open_url
@@ -144,10 +147,13 @@ fun ArticleDetailsPreview() {
 
     ArticleDetails(
         Article(
+            id = "1",
             source = "Alice Johnson",
             pubDate = "2025-01-05 12:15:00",
             title = "The Rise of Kotlin Multiplatform in Mobile Development",
             link = "https://example.com/kotlin-multiplatform",
+            description = null,
+            sourceIconUrl = null,
             imageUrl = "https://picsum.photos/seed/1/300/200",
             keywords = listOf("KMP", "Mobile", "Trends")
         )

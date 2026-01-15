@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.database
+package com.learnkmp.newsapp.data.database
 
 import androidx.room.ConstructedBy
 import androidx.room.Database

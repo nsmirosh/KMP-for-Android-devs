@@ -2,8 +2,8 @@ package com.learnkmp.newsapp.di
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.learnkmp.newsapp.data.createAndroidDataStore
-import com.learnkmp.newsapp.database.getAndroidDatabaseBuilder
+import com.learnkmp.newsapp.data.datastore.createAndroidDataStore
+import com.learnkmp.newsapp.data.database.getAndroidDatabaseBuilder
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

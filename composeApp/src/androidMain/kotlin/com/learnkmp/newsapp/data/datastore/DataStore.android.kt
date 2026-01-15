@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.data
+package com.learnkmp.newsapp.data.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore

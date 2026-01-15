@@ -1,8 +1,9 @@
-package com.learnkmp.newsapp.database
+package com.learnkmp.newsapp.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.data.networking.ArticleDto
+import com.learnkmp.newsapp.domain.model.Article
 
 @Entity(tableName = "articles")
 data class ArticleEntity(
@@ -30,6 +31,35 @@ fun Article.toEntity(category: String?): ArticleEntity {
         sourceIconUrl = sourceIconUrl,
         keywords = keywords.joinToString(","),
         category = category
+    )
+}
+
+fun ArticleDto.toEntity(category: String?): ArticleEntity {
+    return ArticleEntity(
+        id = id,
+        source = source,
+        pubDate = pubDate,
+        title = title,
+        link = link,
+        description = description,
+        imageUrl = imageUrl,
+        sourceIconUrl = sourceIconUrl,
+        keywords = keywords.joinToString(","),
+        category = category
+    )
+}
+
+fun ArticleDto.toDomain(): Article {
+    return Article(
+        id = id,
+        source = source,
+        pubDate = pubDate,
+        title = title,
+        link = link,
+        description = description,
+        imageUrl = imageUrl,
+        sourceIconUrl = sourceIconUrl,
+        keywords = keywords
     )
 }
 

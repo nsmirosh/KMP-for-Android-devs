@@ -1,10 +1,10 @@
-package com.learnkmp.newsapp.models
+package com.learnkmp.newsapp.data.networking
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Article(
+data class ArticleDto(
     @SerialName("article_id") val id: String = "",
     @SerialName("source_name") val source: String,
     val pubDate: String,
@@ -13,5 +13,5 @@ data class Article(
     val description: String? = null,
     @SerialName("image_url") val imageUrl: String? = null,
     @SerialName("source_icon") val sourceIconUrl: String? = null,
-    val keywords: List<String> = emptyList(), //via coerceInputValues
+    val keywords: List<String> = emptyList(),
 )

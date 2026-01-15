@@ -1,8 +1,16 @@
 package com.learnkmp.newsapp.di
 
-import com.learnkmp.newsapp.database.AppDatabase
-import com.learnkmp.newsapp.database.getRoomDatabase
-import com.learnkmp.newsapp.ui.ArticleViewModel
+import com.learnkmp.newsapp.data.database.AppDatabase
+import com.learnkmp.newsapp.data.database.getRoomDatabase
+import com.learnkmp.newsapp.data.repository.NewsRepositoryImpl
+import com.learnkmp.newsapp.data.repository.SettingsRepositoryImpl
+import com.learnkmp.newsapp.domain.repository.NewsRepository
+import com.learnkmp.newsapp.domain.repository.SettingsRepository
+import com.learnkmp.newsapp.domain.usecase.GetArticlesUseCase
+import com.learnkmp.newsapp.domain.usecase.GetSelectedCategoryUseCase
+import com.learnkmp.newsapp.domain.usecase.SaveSelectedCategoryUseCase
+import com.learnkmp.newsapp.ui.viewmodel.ArticleViewModel
+import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
@@ -12,7 +20,18 @@ val databaseModule = module {
     single { get<AppDatabase>().articleDao() }
 }
 
+val repositoryModule = module {
+    single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
+    single<SettingsRepository> { SettingsRepositoryImpl(get()) }
+}
+
+val useCaseModule = module {
+    factoryOf(::GetArticlesUseCase)
+    factoryOf(::GetSelectedCategoryUseCase)
+    factoryOf(::SaveSelectedCategoryUseCase)
+}
+
 fun appModule() = module {
-    includes(databaseModule)
+    includes(databaseModule, repositoryModule, useCaseModule)
     viewModelOf(::ArticleViewModel)
 }

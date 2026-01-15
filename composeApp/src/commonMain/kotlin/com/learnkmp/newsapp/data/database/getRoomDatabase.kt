@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.database
+package com.learnkmp.newsapp.data.database
 
 import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver

@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.domain
+package com.learnkmp.newsapp.domain.model
 
 /**
  * Represents a result that can either contain successful data or an error.

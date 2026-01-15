@@ -1,5 +1,4 @@
-package com.learnkmp.newsapp.ui
-
+package com.learnkmp.newsapp.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,8 +25,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.learnkmp.newsapp.domain.Category
-import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.domain.model.Category
+import com.learnkmp.newsapp.domain.model.Article
+import com.learnkmp.newsapp.ui.ArticleListItem
+import com.learnkmp.newsapp.ui.viewmodel.ArticleViewModel
 import kmpnewsapp.composeapp.generated.resources.Res
 import kmpnewsapp.composeapp.generated.resources.top_news
 import org.jetbrains.compose.resources.stringResource
