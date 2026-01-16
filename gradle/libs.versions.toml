@@ -5,8 +5,10 @@ android-minSdk = "26"
 android-targetSdk = "36"
 androidx-activityCompose = "1.12.2"
 androidx-lifecycle = "2.9.6"
-compose-multiplatform = "1.10.0-rc02"
+compose-multiplatform = "1.10.0"
+koinTest = "4.1.1"
 kotlin = "2.3.0"
+kotlinTest = "2.3.0"
 ktor = "3.3.3"
 buildKonfig = "0.17.1"
 coil3 = "3.3.0"
@@ -21,6 +23,8 @@ sqlite = "2.6.2"
 [libraries]
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinTest" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlinTest" }
 sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqlite" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -44,6 +48,7 @@ koin-core = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 data-store = { module = "androidx.datastore:datastore", version.ref = "data-store" }
 data-store-prefs = { module = "androidx.datastore:datastore-preferences", version.ref = "data-store" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

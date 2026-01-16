@@ -23,9 +23,7 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-//    single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
     singleOf(::NewsRepositoryImpl) { bind<NewsRepository>() }
-//    single<SettingsRepository> { SettingsRepositoryImpl(get()) }
     singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
 }
 
