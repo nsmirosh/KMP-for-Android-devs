@@ -10,7 +10,9 @@ import com.learnkmp.newsapp.domain.usecase.GetArticlesUseCase
 import com.learnkmp.newsapp.domain.usecase.GetSelectedCategoryUseCase
 import com.learnkmp.newsapp.domain.usecase.SaveSelectedCategoryUseCase
 import com.learnkmp.newsapp.ui.viewmodel.ArticleViewModel
+import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
@@ -21,8 +23,10 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-    single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
-    single<SettingsRepository> { SettingsRepositoryImpl(get()) }
+//    single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
+    singleOf(::NewsRepositoryImpl) { bind<NewsRepository>() }
+//    single<SettingsRepository> { SettingsRepositoryImpl(get()) }
+    singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
 }
 
 val useCaseModule = module {
