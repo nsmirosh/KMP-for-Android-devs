@@ -5,28 +5,37 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.learnkmp.newsapp.domain.model.Category
+import com.learnkmp.newsapp.domain.model.Result
 import com.learnkmp.newsapp.domain.repository.SettingsRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
 class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : SettingsRepository {
 
     private val categoryPrefsKey = stringPreferencesKey("category")
 
-    override fun getSelectedCategory(): Flow<Category?> {
-        return dataStore.data.map { preferences ->
-            val categoryValue = preferences[categoryPrefsKey]
-            Category.entries.find { it.value == categoryValue }
-        }
+    override fun getSelectedCategory(): Flow<Result<Category?>> {
+        return dataStore.data
+            .map<Preferences, Result<Category?>> { preferences ->
+                val categoryValue = preferences[categoryPrefsKey]
+                Result.Success(Category.entries.find { it.value == categoryValue })
+            }
+            .catch { emit(Result.Error(it)) }
     }
 
-    override suspend fun saveSelectedCategory(category: Category?) {
-        dataStore.edit { preferences ->
-            if (category == null) {
-                preferences.remove(categoryPrefsKey)
-            } else {
-                preferences[categoryPrefsKey] = category.value
+    override suspend fun saveSelectedCategory(category: Category?): Result<Unit> {
+        return try {
+            dataStore.edit { preferences ->
+                if (category == null) {
+                    preferences.remove(categoryPrefsKey)
+                } else {
+                    preferences[categoryPrefsKey] = category.value
+                }
             }
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Result.Error(e)
         }
     }
 }

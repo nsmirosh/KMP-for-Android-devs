@@ -27,16 +27,31 @@ class ArticleViewModel(
 
     init {
         viewModelScope.launch {
-            val savedCategory = getSelectedCategoryUseCase().first()
-            _selectedCategory.value = savedCategory
-            fetchArticles(savedCategory)
+            when (val result = getSelectedCategoryUseCase().first()) {
+                is Result.Success -> {
+                    val savedCategory = result.data
+                    _selectedCategory.value = savedCategory
+                    fetchArticles(savedCategory)
+                }
+                is Result.Error -> {
+                    println("Error getting selected category: ${result.throwable.message}")
+                    fetchArticles(null)
+                }
+            }
         }
     }
 
     fun onCategorySelected(category: Category?) {
         _selectedCategory.value = category
         viewModelScope.launch {
-            saveSelectedCategoryUseCase(category)
+            when (val result = saveSelectedCategoryUseCase(category)) {
+                is Result.Success -> {
+                    // Category saved successfully
+                }
+                is Result.Error -> {
+                    println("Error saving selected category: ${result.throwable.message}")
+                }
+            }
         }
         fetchArticles(category)
     }
