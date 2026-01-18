@@ -19,10 +19,12 @@ data-store = "1.2.0"
 room = "2.8.4"
 ksp = "2.3.2"
 sqlite = "2.6.2"
+kotlinx-coroutines = "1.10.1"
 
 [libraries]
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinTest" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlinTest" }
 sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqlite" }
