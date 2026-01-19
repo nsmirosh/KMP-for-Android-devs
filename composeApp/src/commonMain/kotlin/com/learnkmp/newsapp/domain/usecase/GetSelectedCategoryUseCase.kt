@@ -6,7 +6,7 @@ import com.learnkmp.newsapp.domain.repository.SettingsRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetSelectedCategoryUseCase(private val repository: SettingsRepository) {
-    operator fun invoke(): Flow<Result<Category?>> {
+    operator fun invoke(): Result<Category?> {
         return repository.getSelectedCategory()
     }
 }

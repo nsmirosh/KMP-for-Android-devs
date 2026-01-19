@@ -27,7 +27,7 @@ class ArticleViewModel(
 
     init {
         viewModelScope.launch {
-            when (val result = getSelectedCategoryUseCase().first()) {
+            when (val result = getSelectedCategoryUseCase()) {
                 is Result.Success -> {
                     val savedCategory = result.data
                     _selectedCategory.value = savedCategory
