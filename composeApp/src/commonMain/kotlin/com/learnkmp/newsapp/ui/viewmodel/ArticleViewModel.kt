@@ -10,7 +10,6 @@ import com.learnkmp.newsapp.domain.usecase.GetSelectedCategoryUseCase
 import com.learnkmp.newsapp.domain.usecase.SaveSelectedCategoryUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class ArticleViewModel(

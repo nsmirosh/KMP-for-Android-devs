@@ -7,21 +7,22 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.learnkmp.newsapp.domain.model.Category
 import com.learnkmp.newsapp.domain.model.Result
 import com.learnkmp.newsapp.domain.repository.SettingsRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : SettingsRepository {
 
     private val categoryPrefsKey = stringPreferencesKey("category")
 
-    override fun getSelectedCategory(): Flow<Result<Category?>> {
-        return dataStore.data
+    override suspend fun getSelectedCategory(): Result<Category?> {
+        val result = dataStore.data
             .map<Preferences, Result<Category?>> { preferences ->
                 val categoryValue = preferences[categoryPrefsKey]
                 Result.Success(Category.entries.find { it.value == categoryValue })
             }
             .catch { emit(Result.Error(it)) }
+        return result.first()
     }
 
     override suspend fun saveSelectedCategory(category: Category?): Result<Unit> {

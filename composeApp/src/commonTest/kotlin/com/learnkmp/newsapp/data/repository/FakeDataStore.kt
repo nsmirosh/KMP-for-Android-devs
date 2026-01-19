@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.domain
+package com.learnkmp.newsapp.data.repository
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
