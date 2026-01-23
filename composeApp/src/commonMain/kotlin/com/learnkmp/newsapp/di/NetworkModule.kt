@@ -11,8 +11,6 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
-import org.koin.core.module.dsl.bind
-import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -20,8 +18,8 @@ import org.koin.dsl.module
 fun commonNetworkModule() = module {
     single<HttpClient> {
         // injecting platform-specific HttpClient here
-        val platformHttpClient: HttpClient = get(named("platform"))
-        platformHttpClient.config {
+        val platformSpecificHttpClient: HttpClient = get(named("platform"))
+        platformSpecificHttpClient.config {
             val formatter = Json {
                 ignoreUnknownKeys = true
                 isLenient = true

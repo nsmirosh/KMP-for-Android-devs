@@ -34,7 +34,7 @@ class ArticleViewModel(
                 }
                 is Result.Error -> {
                     println("Error getting selected category: ${result.throwable.message}")
-                    fetchArticles(null)
+                    fetchArticles()
                 }
             }
         }
@@ -55,7 +55,7 @@ class ArticleViewModel(
         fetchArticles(category)
     }
 
-    private fun fetchArticles(category: Category?) {
+    private fun fetchArticles(category: Category? = null) {
         viewModelScope.launch {
             when (val result = getArticlesUseCase(category)) {
                 is Result.Success -> {

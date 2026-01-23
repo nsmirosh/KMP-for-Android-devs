@@ -30,16 +30,15 @@ class NewsRepositoryImpl(
 
             val articles = response.results
 
-            // Cache articles
-            if (category == null) {
-                articleDao.deleteArticlesWithoutCategory()
-            } else {
+            if (category != null) {
+                //clear stale articles if they exist
                 articleDao.deleteArticlesByCategory(category.value)
             }
             articleDao.insertArticles(articles.map { it.toEntity(category?.value) })
 
             Result.Success(articles.map { it.toDomain() })
         } catch (e: Exception) {
+            // use cache in case the request failed
             val cachedArticles = if (category == null) {
                 articleDao.getArticlesWithoutCategory()
             } else {
