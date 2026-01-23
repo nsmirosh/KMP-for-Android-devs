@@ -15,10 +15,13 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
+enum class HttpClientQualifier { PLATFORM}
+
+
 fun commonNetworkModule() = module {
     single<HttpClient> {
         // injecting platform-specific HttpClient here
-        val platformSpecificHttpClient: HttpClient = get(named("platform"))
+        val platformSpecificHttpClient: HttpClient = get(named(HttpClientQualifier.PLATFORM))
         platformSpecificHttpClient.config {
             val formatter = Json {
                 ignoreUnknownKeys = true

@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 
 fun androidNetworkModule() = module {
-    single<HttpClient>(named("platform")) { HttpClient(OkHttp) }
+    single<HttpClient>(named(HttpClientQualifier.PLATFORM)) { HttpClient(OkHttp) }
 }

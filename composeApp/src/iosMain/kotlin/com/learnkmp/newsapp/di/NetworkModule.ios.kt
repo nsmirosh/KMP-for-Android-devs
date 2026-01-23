@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 
 fun iOSNetworkModule() = module {
-    single<HttpClient>(named("platform")){ HttpClient(Darwin) }
+    single<HttpClient>(named(HttpClientQualifier.PLATFORM)){ HttpClient(Darwin) }
 }
