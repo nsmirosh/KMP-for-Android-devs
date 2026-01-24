@@ -56,30 +56,32 @@ class NewsRepositoryImplTest : KoinTest {
     fun tearDown() {
         stopKoin()
     }
+    val articleDto = ArticleDto(
+        id = "1",
+        source = "Source",
+        pubDate = "2024-01-24",
+        title = "Title",
+        link = "link",
+        description = "description",
+        imageUrl = "image",
+        sourceIconUrl = "icon",
+        keywords = listOf("keyword")
+    )
+
+    val successfulResponseDto  = ArticlesResponseDto(
+        status = "success",
+        totalResults = 1,
+        results = listOf(articleDto)
+    )
+
 
     @Test
     fun `getNews returns success when network call is successful`() = runTest {
-        val articleDto = ArticleDto(
-            id = "1",
-            source = "Source",
-            pubDate = "2024-01-24",
-            title = "Title",
-            link = "link",
-            description = "description",
-            imageUrl = "image",
-            sourceIconUrl = "icon",
-            keywords = listOf("keyword")
-        )
-        val responseDto = ArticlesResponseDto(
-            status = "success",
-            totalResults = 1,
-            results = listOf(articleDto)
-        )
-
         mockHandler = {
-            respondJson(responseDto)
+            respondJson(successfulResponseDto)
         }
 
+        //we don't really care what category is being sent - since we're faking the return values
         val result = repository.getNews(null)
 
         assertTrue(result is Result.Success)
@@ -89,26 +91,13 @@ class NewsRepositoryImplTest : KoinTest {
 
     @Test
     fun `getNews returns cached data when network call fails`() = runTest {
-        val articleDto = ArticleDto(
-            id = "1",
-            source = "Source",
-            pubDate = "2024-01-24",
-            title = "Title",
-            link = "link",
-            keywords = emptyList()
-        )
-        val responseDto = ArticlesResponseDto(
-            status = "success",
-            totalResults = 1,
-            results = listOf(articleDto)
-        )
 
         var shouldFail = false
         mockHandler = {
             if (shouldFail) {
                 respondError(HttpStatusCode.InternalServerError)
             } else {
-                respondJson(responseDto)
+                respondJson(successfulResponseDto)
             }
         }
 
