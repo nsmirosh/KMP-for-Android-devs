@@ -41,7 +41,9 @@ class NewsRepositoryImplTest : KoinTest {
         single<HttpClient>(named(HttpClientQualifier.PLATFORM)) {
             HttpClient(MockEngine { request ->
                 mockHandler!!(request)
-            })
+            }).config {
+
+            }
         }
     }
 
@@ -93,8 +95,10 @@ class NewsRepositoryImplTest : KoinTest {
     fun `getNews returns cached data when network call fails`() = runTest {
 
         var shouldFail = false
+        var networkCallFailed = false
         mockHandler = {
             if (shouldFail) {
+                networkCallFailed = true
                 respondError(HttpStatusCode.InternalServerError)
             } else {
                 respondJson(successfulResponseDto)
@@ -108,6 +112,7 @@ class NewsRepositoryImplTest : KoinTest {
         shouldFail = true
         val result = repository.getNews(null)
 
+        assertTrue(networkCallFailed)
         assertTrue(result is Result.Success)
         assertEquals(1, result.data.size)
         assertEquals("Title", result.data[0].title)
