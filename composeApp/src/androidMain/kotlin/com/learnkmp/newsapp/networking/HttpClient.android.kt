@@ -6,4 +6,4 @@ import io.ktor.client.engine.okhttp.OkHttp
 
 //TODO define your Android actual here
 
-actual fun createHttpClient(): HttpClient  = HttpClient(OkHttp)
+actual fun createPlatformHttpClient(): HttpClient  = HttpClient(OkHttp)

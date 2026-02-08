@@ -5,4 +5,4 @@ import io.ktor.client.engine.darwin.Darwin
 
 
 //TODO define your iOS actual here
-actual fun createHttpClient(): HttpClient  = HttpClient(Darwin)
+actual fun createPlatformHttpClient(): HttpClient  = HttpClient(Darwin)
