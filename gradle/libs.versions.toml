@@ -3,11 +3,11 @@ agp = "8.13.2"
 android-compileSdk = "36"
 android-minSdk = "26"
 android-targetSdk = "36"
-androidx-activityCompose = "1.12.2"
+androidx-activityCompose = "1.12.3"
 androidx-lifecycle = "2.9.6"
-compose-multiplatform = "1.10.0-rc02"
-kotlin = "2.3.0"
-ktor = "3.3.3"
+compose-multiplatform = "1.10.0"
+kotlin = "2.3.10"
+ktor = "3.4.0"
 buildKonfig = "0.17.1"
 coil3 = "3.3.0"
 androidx-nav3 = "1.0.0-alpha06"
@@ -23,6 +23,7 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "buildKonfig" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-multiplatform" }
 viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 coil-compose = { module ="io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
