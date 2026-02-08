@@ -29,7 +29,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -40,7 +40,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
@@ -50,7 +50,9 @@ kotlin {
             implementation(libs.ktor.client.darwin)
         }
         commonMain.dependencies {
+            implementation(libs.runtime)
             implementation(libs.material)
+            implementation(libs.ui)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.viewmodel.compose)
@@ -107,3 +109,8 @@ buildkonfig {
         buildConfigField(STRING, "API_KEY", properties.getProperty("API_KEY"))
     }
 }
+
+dependencies {
+    debugImplementation(libs.ui.tooling.preview)
+}
+
