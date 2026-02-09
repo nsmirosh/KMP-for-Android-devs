@@ -66,6 +66,8 @@ kotlin {
 
             implementation(libs.ui.tooling.preview)
             implementation(libs.androidx.nav3.ui)
+            implementation(libs.koin.core)
+            implementation(libs.koin.viewmodel)
         }
     }
 }

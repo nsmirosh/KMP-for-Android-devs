@@ -13,6 +13,7 @@ coil3 = "3.3.0"
 androidx-nav3 = "1.0.0-alpha06"
 icons = "1.7.3"
 material = "1.10.0"
+koin = "4.2.0-RC1"
 
 [libraries]
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -34,6 +35,8 @@ coil-compose = { module ="io.coil-kt.coil3:coil-compose", version.ref = "coil3" 
 coil-networking = {module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil3"}
 androidx-extended-icons = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "icons" }
 androidx-nav3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "androidx-nav3" }
+koin-core = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 
 
 [plugins]
