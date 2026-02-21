@@ -25,8 +25,8 @@ data class NewsDetailsKey(val article: Article) : NavKey
 fun App() {
     KoinApplication(configuration = KoinConfiguration {
         modules(
+
             appModule(),
-            commonNetworkModule(),
             platformModule()
         )
     }) {
