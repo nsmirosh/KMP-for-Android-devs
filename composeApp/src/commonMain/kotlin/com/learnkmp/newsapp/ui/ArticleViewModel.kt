@@ -6,18 +6,14 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.learnkmp.newsapp.models.Article
-import com.learnkmp.newsapp.networking.NewsDataRepo
-import com.learnkmp.newsapp.networking.NewsDataRepoImpl
+import com.learnkmp.newsapp.domain.models.Article
+import com.learnkmp.newsapp.data.repositories.NewsDataRepo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-import com.learnkmp.newsapp.domain.Category
-import com.learnkmp.newsapp.domain.Result
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.flow.first
+import com.learnkmp.newsapp.domain.models.Category
+import com.learnkmp.newsapp.domain.models.Result
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 

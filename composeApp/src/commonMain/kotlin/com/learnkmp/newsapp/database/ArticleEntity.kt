@@ -2,7 +2,7 @@ package com.learnkmp.newsapp.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.domain.models.Article
 
 @Entity(tableName = "articles")
 data class ArticleEntity(

@@ -7,7 +7,7 @@ import com.learnkmp.newsapp.data.createAndroidDataStore
 import com.learnkmp.newsapp.database.getAndroidDatabaseBuilder
 import org.koin.android.ext.koin.androidContext
 
-actual fun platformModule() = module {
+actual fun platformSpecificModule() = module {
     single<DataStore<Preferences>> { createAndroidDataStore(androidContext()) }
     single { getAndroidDatabaseBuilder(androidContext()) }
 }

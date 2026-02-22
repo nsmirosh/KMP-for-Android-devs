@@ -1,27 +1,25 @@
-package com.learnkmp.newsapp.networking
+package com.learnkmp.newsapp.data.repositories
 
 import com.learnkmp.newsapp.BuildKonfig
 import com.learnkmp.newsapp.database.ArticleDao
 import com.learnkmp.newsapp.database.toDomain
 import com.learnkmp.newsapp.database.toEntity
-import com.learnkmp.newsapp.domain.Category
-import com.learnkmp.newsapp.domain.Result
-import com.learnkmp.newsapp.models.Article
-import com.learnkmp.newsapp.models.ArticlesResponse
+import com.learnkmp.newsapp.domain.models.Category
+import com.learnkmp.newsapp.domain.models.Result
+import com.learnkmp.newsapp.domain.models.Article
+import com.learnkmp.newsapp.domain.models.ArticlesResponse
+import com.learnkmp.newsapp.domain.repositories.NewsRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 
 
-interface NewsDataRepo {
-    suspend fun getNewsData(category: Category?): Result<List<Article>>
-}
 
-class NewsDataRepoImpl(
+class NewsRepositoryImpl(
     private val httpClient: HttpClient,
     private val articleDao: ArticleDao
-) : NewsDataRepo {
+) : NewsRepository {
 
     override suspend fun getNewsData(category: Category?): Result<List<Article>> =
         try {

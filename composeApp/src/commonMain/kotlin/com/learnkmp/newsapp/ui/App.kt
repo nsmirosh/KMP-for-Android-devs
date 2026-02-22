@@ -9,9 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
-import com.learnkmp.newsapp.di.appModule
-import com.learnkmp.newsapp.di.platformModule
-import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.di.sharedModule
+import com.learnkmp.newsapp.di.platformSpecificModule
+import com.learnkmp.newsapp.domain.models.Article
 import org.koin.compose.KoinApplication
 import org.koin.dsl.KoinConfiguration
 
@@ -23,8 +23,8 @@ data class NewsDetailsKey(val article: Article) : NavKey
 fun App() {
     KoinApplication(configuration = KoinConfiguration {
         modules(
-            appModule(),
-            platformModule()
+            sharedModule(),
+            platformSpecificModule()
         )
     }) {
         MaterialTheme {
