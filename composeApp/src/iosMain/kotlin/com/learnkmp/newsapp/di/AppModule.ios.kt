@@ -6,5 +6,4 @@ import org.koin.dsl.module
 
 fun iosModule() = module {
     single { createIosDataStore() }
-    single { getIOSDatabaseBuilder() }
 }
