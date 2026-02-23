@@ -26,8 +26,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.learnkmp.newsapp.domain.Category
-import com.learnkmp.newsapp.models.Article
+import com.learnkmp.newsapp.domain.models.Category
+import com.learnkmp.newsapp.domain.models.Article
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

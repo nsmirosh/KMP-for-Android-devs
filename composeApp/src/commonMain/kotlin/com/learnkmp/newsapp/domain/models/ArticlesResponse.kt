@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.models
+package com.learnkmp.newsapp.domain.models
 
 import kotlinx.serialization.Serializable
 

@@ -19,6 +19,12 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.buildKonfig)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 
@@ -68,8 +74,19 @@ kotlin {
             implementation(libs.koin.viewmodel)
             implementation(libs.data.store)
             implementation(libs.data.store.prefs)
+
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
     }
+}
+
+dependencies {
+//    add("kspCommonMainMetadata", libs.androidx.room.compiler)
+    add("kspAndroid", libs.androidx.room.compiler)
+    add("kspIosX64", libs.androidx.room.compiler)
+    add("kspIosArm64", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
 }
 
 android {

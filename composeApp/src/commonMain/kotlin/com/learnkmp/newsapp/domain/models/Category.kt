@@ -1,4 +1,4 @@
-package com.learnkmp.newsapp.domain
+package com.learnkmp.newsapp.domain.models
 
 enum class Category(val value: String) {
     BUSINESS("business"),
