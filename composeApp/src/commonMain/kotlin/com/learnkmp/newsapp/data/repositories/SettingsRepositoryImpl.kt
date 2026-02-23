@@ -25,8 +25,8 @@ class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : Se
         return result.first()
     }
 
-    override suspend fun saveSelectedCategory(category: Category?): Result<Unit> {
-        return try {
+    override suspend fun saveSelectedCategory(category: Category?): Result<Unit> =
+        try {
             dataStore.edit { preferences ->
                 if (category == null) {
                     preferences.remove(categoryPrefsKey)
@@ -38,5 +38,4 @@ class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : Se
         } catch (e: Exception) {
             Result.Error(e)
         }
-    }
 }

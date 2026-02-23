@@ -4,5 +4,5 @@ import org.koin.dsl.module
 
 
 actual fun platformSpecificModule() = module {
-    includes(iosModule(), iOSNetworkModule())
+    includes(iosModule())
 }

@@ -1,8 +1,10 @@
 package com.learnkmp.newsapp.di
 
 import com.learnkmp.newsapp.database.getRoomDatabase
-import com.learnkmp.newsapp.data.repositories.NewsDataRepo
 import com.learnkmp.newsapp.data.repositories.NewsRepositoryImpl
+import com.learnkmp.newsapp.data.repositories.SettingsRepositoryImpl
+import com.learnkmp.newsapp.domain.repositories.NewsRepository
+import com.learnkmp.newsapp.domain.repositories.SettingsRepository
 import com.learnkmp.newsapp.networking.buildHttpClient
 import com.learnkmp.newsapp.ui.ArticleViewModel
 import io.ktor.client.HttpClient
@@ -21,7 +23,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    singleOf(::NewsRepositoryImpl) { bind<NewsDataRepo>() }
+    singleOf(::NewsRepositoryImpl) { bind<NewsRepository>() }
     singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
 }
 
