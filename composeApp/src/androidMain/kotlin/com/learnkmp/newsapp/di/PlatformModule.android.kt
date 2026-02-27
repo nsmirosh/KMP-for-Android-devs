@@ -7,5 +7,4 @@ import org.koin.dsl.module
 
 actual fun platformSpecificModule() = module {
     single { createAndroidDataStore(androidContext()) }
-    single { getAndroidDatabaseBuilder(androidContext()) }
 }
