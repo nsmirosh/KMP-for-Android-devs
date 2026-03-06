@@ -146,7 +146,7 @@ val fakeArticles = listOf(
     Article(
         id = 6,
         author = "Frank Wilson",
-        publishedAt = "2025-01-10 11:45:00 ",
+        publishedAt = "2025-01-10 11:45:00",
         title = "Mastering Coroutine Flows for Reactive Android Apps",
         url = "https://example.com/coroutine-flows"
     ),
